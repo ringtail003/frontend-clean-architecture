@@ -4,7 +4,9 @@ import { delay } from 'rxjs/operators';
 import { GroupListApiPresenter } from 'src/app/api-presenters/group-list-api-presenter';
 import { GroupList } from 'src/app/entities/group-list';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class GroupRepository {
   constructor(private presenter: GroupListApiPresenter) {}
 

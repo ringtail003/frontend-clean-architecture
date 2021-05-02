@@ -3,7 +3,9 @@ import { CategoryListResponse } from 'src/app/api-interfaces/category-api-interf
 import { Category } from 'src/app/entities/category';
 import { CategoryList } from 'src/app/entities/category-list';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class CategoryListPresenter {
   parseGetListBody(response: CategoryListResponse): CategoryList {
     return new CategoryList({

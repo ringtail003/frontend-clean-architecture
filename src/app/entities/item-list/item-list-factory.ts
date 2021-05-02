@@ -6,7 +6,9 @@ import { ItemListB } from 'src/app/entities/item-list/item-list-b';
 import { ItemListC } from 'src/app/entities/item-list/item-list-c';
 import { TypeId } from 'src/app/entities/type';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class ItemListFactory {
   create(typeId: TypeId, items: Item[]): ItemList {
     switch (typeId) {

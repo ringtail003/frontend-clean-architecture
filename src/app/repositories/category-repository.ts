@@ -4,7 +4,9 @@ import { delay } from 'rxjs/operators';
 import { CategoryListPresenter } from 'src/app/api-presenters/category-list-api-presenter';
 import { CategoryList } from 'src/app/entities/category-list';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class CategoryRepository {
   constructor(private presenter: CategoryListPresenter) {}
 

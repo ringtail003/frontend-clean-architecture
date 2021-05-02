@@ -4,7 +4,9 @@ import { delay } from 'rxjs/operators';
 import { TemplateListApiPresenter } from 'src/app/api-presenters/template-list-api-presenter';
 import { TemplateList } from 'src/app/entities/template-list';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class TemplateRepository {
   constructor(private presenter: TemplateListApiPresenter) {}
 

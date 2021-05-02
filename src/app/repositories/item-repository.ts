@@ -6,7 +6,9 @@ import { Item } from 'src/app/entities/item';
 import { ItemList } from 'src/app/entities/item-list/item-list';
 import { TypeId } from 'src/app/entities/type';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class ItemRepository {
   constructor(private presenter: ItemListApiPresenter) {}
 

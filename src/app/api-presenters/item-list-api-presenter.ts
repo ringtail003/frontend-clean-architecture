@@ -5,7 +5,9 @@ import { ItemList } from 'src/app/entities/item-list/item-list';
 import { ItemListFactory } from 'src/app/entities/item-list/item-list-factory';
 import { TypeId } from 'src/app/entities/type';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class ItemListApiPresenter {
   constructor(private factory: ItemListFactory) {}
 
