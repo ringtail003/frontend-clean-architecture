@@ -1,1 +1,14 @@
-<p>setting works!</p>
+<div id="container">
+  <app-group-list 
+    [vm]="vm.groupList"
+    (onGroupSelected)="handleGroupSelected($event)"
+  ></app-group-list>
+
+  <app-category-list></app-category-list>
+
+  <app-group-setting
+    [vm]="vm.groupSetting"
+  ></app-group-setting>
+  
+  <app-template-list></app-template-list>
+</div>

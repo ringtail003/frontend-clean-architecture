@@ -1,0 +1,7 @@
+<select>
+  <option 
+    *ngFor="let item of vm.items"
+    [ngForTrackByField]="'id'"
+    (click)="onTypeSelected.emit(item)"
+  >{{item.label}}</option>
+</select>

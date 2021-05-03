@@ -1,9 +1,26 @@
 import { Group } from 'src/app/entities/group';
 
 export class GroupList {
-  public readonly items: Group[];
+  #items: Group[] | null;
 
-  constructor(params: { items: Group[] }) {
-    this.items = params.items;
+  constructor() {
+    this.#items = null;
+  }
+
+  get items() {
+    return this.#items;
+  }
+
+  setItems(items: Group[]): void {
+    this.#items = items;
+    this.#items.forEach((v) => (v.handler = (v) => this.onChangeHandler(v)));
+  }
+
+  onChangeHandler(group: Group): void {
+    this.#items!.forEach((v) => {
+      if (v.id !== group.id) {
+        v.deselect();
+      }
+    });
   }
 }

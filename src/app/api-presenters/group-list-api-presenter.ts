@@ -8,6 +8,9 @@ import { GroupList } from 'src/app/entities/group-list';
 })
 export class GroupListApiPresenter {
   parseGetListBody(response: GetListResponse): GroupList {
-    return new GroupList({ items: response.map((v) => new Group(v)) });
+    const groupList = new GroupList();
+    groupList.setItems(response.map((v) => new Group(v)));
+
+    return groupList;
   }
 }

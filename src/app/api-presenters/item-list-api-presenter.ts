@@ -12,7 +12,7 @@ export class ItemListApiPresenter {
   constructor(private factory: ItemListFactory) {}
 
   parseGetListBody(typeId: TypeId, response: GetListResponse): ItemList {
-    return this.factory.create(
+    return this.factory.createByTypeId(
       typeId,
       response.map((v) => new Item(v))
     );

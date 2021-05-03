@@ -1,11 +1,18 @@
 :root {
-  --gray: #a1a0a0;
+  --gray-light: #d6d4d4;
+  --gray: #b8b6b6;
   --gray-deep: #817f7f;
   --white: #eeeded;
+  --radius: 3px;
   font-size: 14px;
+  font-family: "Helvetica Neue", "Helvetica", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Arial", "Yu Gothic", "Meiryo", sans-serif;
 }
 
 body {
   padding: 1rem;
   background: var(--gray);
+}
+
+h1 {
+  font-size: 1.2rem;
 }

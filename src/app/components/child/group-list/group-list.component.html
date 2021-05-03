@@ -1,1 +1,16 @@
-<p>group-list works!</p>
+<app-loading *ngIf="vm.isLoading"></app-loading>
+
+<ng-template
+ [ngIf]="!vm.isLoading"
+>
+  <h1>Group</h1>
+
+  <ul>
+    <li 
+      *ngFor="let item of vm.items;"
+      [ngForTrackByField]="'id'"
+      [attr.isSelected]="item.isSelected"
+      (click)="onGroupSelected.emit(item)"
+    >{{item.label}}</li>
+  </ul>
+</ng-template>

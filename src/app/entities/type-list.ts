@@ -1,18 +1,27 @@
 import { Type } from 'src/app/entities/type';
 
 export class TypeList {
-  public readonly items: Type[];
-  #selectedId: number | null = null;
+  #items: Type[];
 
   constructor() {
-    this.items = [
-      new Type({ id: 'typeA', label: 'typeA' }),
-      new Type({ id: 'typeB', label: 'typeB' }),
-      new Type({ id: 'typeC', label: 'typeC' }),
-    ];
+    this.#items = [];
   }
 
-  select(id: number | null): void {
-    this.#selectedId = id || null;
+  get items(): Type[] {
+    return this.#items;
+  }
+  set items(items: Type[]) {
+    this.#items = items;
+    this.#items.forEach((v) =>
+      v.setHandler((group) => this.changeHandler(group))
+    );
+  }
+
+  changeHandler(type: Type) {
+    this.#items.forEach((v) => {
+      if (v.id !== type.id) {
+        v.deselect();
+      }
+    });
   }
 }

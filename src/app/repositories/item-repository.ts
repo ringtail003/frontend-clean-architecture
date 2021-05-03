@@ -5,6 +5,7 @@ import { ItemListApiPresenter } from 'src/app/api-presenters/item-list-api-prese
 import { Item } from 'src/app/entities/item';
 import { ItemList } from 'src/app/entities/item-list/item-list';
 import { TypeId } from 'src/app/entities/type';
+import { ExhaustImplementationError } from 'src/app/exceptions/exhaust-implementation-error';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +13,7 @@ import { TypeId } from 'src/app/entities/type';
 export class ItemRepository {
   constructor(private presenter: ItemListApiPresenter) {}
 
-  getList(typeId: TypeId): Rx.Observable<ItemList> {
+  getListByType(typeId: TypeId): Rx.Observable<ItemList> {
     const items = (() => {
       switch (typeId) {
         case 'typeA':
@@ -34,18 +35,12 @@ export class ItemRepository {
           ];
 
         default:
-          throw new InvalidTypeError(typeId);
+          throw new ExhaustImplementationError(typeId);
       }
     })();
 
     return Rx.of(this.presenter.parseGetListBody(typeId, items)).pipe(
       delay(3000)
     );
-  }
-}
-
-class InvalidTypeError extends Error {
-  constructor(_: never, message?: string) {
-    super(message);
   }
 }
