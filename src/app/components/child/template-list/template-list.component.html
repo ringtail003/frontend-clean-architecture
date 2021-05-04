@@ -6,6 +6,10 @@
 <ng-template
   [ngIf]="!vm.isLoading && !vm.isEmpty"
 >
+  <aside 
+    *ngIf="!(vm.items!.length)"
+  >There are no templates in selected category.</aside>
+
   <ul>
     <li 
       *ngFor="let item of vm.items; index as index"

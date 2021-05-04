@@ -1,4 +1,6 @@
-import { Category } from 'src/app/entities/category';
+import { Category } from 'src/app/entities/category/category';
+import { CategoryConcrete } from 'src/app/entities/category/category-concrete';
+import { CategoryFactory } from 'src/app/entities/category/category-factory';
 import { Entity } from 'src/app/entities/entity';
 
 export class CategoryList extends Entity<CategoryList> {
@@ -12,8 +14,8 @@ export class CategoryList extends Entity<CategoryList> {
   get items() {
     return this.#items;
   }
-  setItems(items: Category[]): void {
-    this.#items = items;
+  setItems(items: CategoryConcrete[]): void {
+    this.#items = [new CategoryFactory().create(), ...items];
     this.#items.forEach((v) => (v.handler = (v) => this.onChangeHandler(v)));
   }
 

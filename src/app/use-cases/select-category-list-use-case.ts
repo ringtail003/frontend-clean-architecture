@@ -18,10 +18,19 @@ export class SelectCategoryListUseCase {
       return;
     }
 
-    setting.categoryList!.items!.find((v) => v.id === categoryId)?.select();
-    setting.categoryList!.attach();
+    const category = setting.categoryList!.items!.find(
+      (v) => v.id === categoryId
+    );
+    category!.select();
     setting.setTemplateList(new TemplateList());
 
+    if (!category!.hasTemplates) {
+      setting.templateList!.setItems([]);
+      handler(setting);
+      return;
+    }
+
+    setting.categoryList!.attach();
     handler(setting);
 
     this.templateRepository
