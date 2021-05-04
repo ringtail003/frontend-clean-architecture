@@ -8,12 +8,12 @@ import { TemplateListComponent } from 'src/app/components/child/template-list/te
 import { NgForTrackByIdDirective } from 'src/app/directives/ng-for-track-by-field-directive';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { DisabledComponent } from './components/child/disabled/disabled.component';
 import { GroupListComponent } from './components/child/group-list/group-list.component';
 import { GroupSettingComponent } from './components/child/group-setting/group-setting.component';
+import { SpinnerComponent } from './components/child/spinner/spinner.component';
 import { SettingComponent } from './components/container/setting.component';
 import { TypeListComponent } from './components/type-list/type-list.component';
-import { DisabledComponent } from './components/disabled/disabled.component';
-import { SpinnerComponent } from './spinner/spinner.component';
 import { ValidationErrorsComponent } from './components/validation-errors/validation-errors.component';
 
 @NgModule({
