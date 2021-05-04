@@ -1,9 +1,11 @@
+import { Entity } from 'src/app/entities/entity';
 import { Group } from 'src/app/entities/group';
 
-export class GroupList {
+export class GroupList extends Entity<GroupList> {
   #items: Group[] | null;
 
   constructor() {
+    super();
     this.#items = null;
   }
 

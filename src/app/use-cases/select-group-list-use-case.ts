@@ -18,15 +18,21 @@ export class SelectGroupListUseCase {
     groupId: number,
     handler: (setting: Setting) => void
   ): void {
+    if (setting.groupList?.isSealed) {
+      return;
+    }
+
     setting.groupList!.items!.find((v) => v.id === groupId)?.select();
 
     const groupSetting = new GroupSetting();
     setting.setGroupSetting(groupSetting);
+    setting.groupList!.attach();
 
     handler(setting);
 
     this.typeRepository.getListByGroup(groupId).subscribe((typeList) => {
       groupSetting.setTypeList(typeList);
+      setting.groupList?.detach();
       handler(setting);
     });
   }
