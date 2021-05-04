@@ -1,8 +1,10 @@
 import { Entity } from 'src/app/entities/entity';
 import { Type } from 'src/app/entities/type';
+import { ValidationErrorList } from 'src/app/entities/validation-error-list';
 
 export class TypeList extends Entity<TypeList> {
   #items: Type[] | null;
+  #validationWhere = 'TypeList' as const;
 
   constructor() {
     super();
@@ -25,5 +27,19 @@ export class TypeList extends Entity<TypeList> {
         v.deselect();
       }
     });
+  }
+
+  getErrors(): ValidationErrorList {
+    const list = new ValidationErrorList(this.#validationWhere);
+
+    if (!(this.#items || []).some((v) => v.isSelected)) {
+      list.add(`emptySelection`, `Must be selected either one.`);
+    }
+
+    if (this.#items === null) {
+      list.add(`requesting`, `Now requesting.`);
+    }
+
+    return list;
   }
 }

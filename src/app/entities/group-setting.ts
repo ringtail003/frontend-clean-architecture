@@ -1,5 +1,6 @@
 import { ItemList } from 'src/app/entities/item-list/item-list';
 import { TypeList } from 'src/app/entities/type-list';
+import { ValidationErrorList } from 'src/app/entities/validation-error-list';
 
 export class GroupSetting {
   #typeList: TypeList | null;
@@ -24,5 +25,11 @@ export class GroupSetting {
 
   setItemList(itemList: ItemList): void {
     this.#itemList = itemList;
+  }
+
+  getErrors(): ValidationErrorList {
+    return new ValidationErrorList()
+      .concat(this.#typeList?.getErrors())
+      .concat(this.#itemList?.getErrors());
   }
 }

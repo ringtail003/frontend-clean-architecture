@@ -5,6 +5,7 @@ import { GroupListUiPresenter } from 'src/app/ui-presenters/group-list-ui-presen
 import { GroupSettingUiPresenter } from 'src/app/ui-presenters/group-setting-ui-presenter';
 import { TemplateListUiPresenter } from 'src/app/ui-presenters/template-list-ui-presenter';
 import { SettingViewModel } from 'src/app/view-models/setting-view-model';
+import { ValidationErrorListViewModel } from 'src/app/view-models/validation-error-list-view-model';
 
 @Injectable({
   providedIn: 'root',
@@ -23,6 +24,15 @@ export class SettingUiPresenter {
       groupSetting: this.groupSetting.parse(setting.groupSetting),
       categoryList: this.categoryList.parse(setting.categoryList),
       templateList: this.templateList.parse(setting.templateList),
+      errors: this.parseValidationErrors(setting),
+    };
+  }
+
+  parseValidationErrors(setting: Setting): ValidationErrorListViewModel {
+    return {
+      items: setting.getErrors().items.map(({ where, cause, message }) => {
+        return { where, cause, message };
+      }),
     };
   }
 }

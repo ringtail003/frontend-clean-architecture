@@ -2,8 +2,11 @@ import { CategoryList } from 'src/app/entities/category-list';
 import { GroupList } from 'src/app/entities/group-list';
 import { GroupSetting } from 'src/app/entities/group-setting';
 import { TemplateList } from 'src/app/entities/template-list';
+import { ValidationErrorList } from 'src/app/entities/validation-error-list';
 
 export class Setting {
+  #validationKey = 'Setting' as const;
+
   #groupList: GroupList | null;
   #groupSetting: GroupSetting | null;
   #categoryList: CategoryList | null;
@@ -42,5 +45,20 @@ export class Setting {
   }
   setTemplateList(templateList: TemplateList) {
     this.#templateList = templateList;
+  }
+
+  clear() {
+    this.#groupList!.items!.forEach((v) => v.deselect());
+    this.#groupSetting = new GroupSetting();
+    this.#categoryList!.items!.forEach((v) => v.deselect());
+    this.#templateList = null;
+  }
+
+  getErrors(): ValidationErrorList {
+    return new ValidationErrorList()
+      .concat(this.#groupList?.getErrors())
+      .concat(this.#groupSetting?.getErrors())
+      .concat(this.#categoryList?.getErrors())
+      .concat(this.#templateList?.getErrors());
   }
 }

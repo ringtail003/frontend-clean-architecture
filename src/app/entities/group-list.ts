@@ -1,7 +1,10 @@
 import { Entity } from 'src/app/entities/entity';
 import { Group } from 'src/app/entities/group';
+import { ValidationErrorList } from 'src/app/entities/validation-error-list';
 
 export class GroupList extends Entity<GroupList> {
+  #validationWhere = 'Group' as const;
+
   #items: Group[] | null;
 
   constructor() {
@@ -24,5 +27,19 @@ export class GroupList extends Entity<GroupList> {
         v.deselect();
       }
     });
+  }
+
+  getErrors(): ValidationErrorList {
+    const list = new ValidationErrorList(this.#validationWhere);
+
+    if (!(this.#items || []).some((v) => v.isSelected)) {
+      list.add(`emptySelection`, `Must be selected either one.`);
+    }
+
+    if (this.#items === null) {
+      list.add(`requesting`, `Now requesting.`);
+    }
+
+    return list;
   }
 }

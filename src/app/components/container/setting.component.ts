@@ -3,6 +3,7 @@ import { Setting } from 'src/app/entities/setting';
 import { TypeId } from 'src/app/entities/type';
 import { SettingUiPresenter } from 'src/app/ui-presenters/setting-ui-presenter';
 import { CreateSettingUseCase } from 'src/app/use-cases/create-setting-use-case';
+import { SaveSettingUseCase } from 'src/app/use-cases/save-setting-use-case';
 import { SelectCategoryListUseCase } from 'src/app/use-cases/select-category-list-use-case';
 import { SelectGroupListUseCase } from 'src/app/use-cases/select-group-list-use-case';
 import { SelectItemListUseCase } from 'src/app/use-cases/select-item-list-use-case';
@@ -26,7 +27,8 @@ export class SettingComponent implements OnInit {
     private selectTypeList: SelectTypeListUseCase,
     private selectItemList: SelectItemListUseCase,
     private selectCategoryList: SelectCategoryListUseCase,
-    private selectTemplateList: SelectTemplateListUseCase
+    private selectTemplateList: SelectTemplateListUseCase,
+    private saveSettingUseCase: SaveSettingUseCase
   ) {}
 
   ngOnInit(): void {
@@ -61,6 +63,10 @@ export class SettingComponent implements OnInit {
     this.selectTemplateList.exec(this.entity, templateId, (v) =>
       this.useCaseHandler(v)
     );
+  }
+
+  handleSaveButtonClicked() {
+    this.saveSettingUseCase.exec(this.entity, (v) => this.useCaseHandler(v));
   }
 
   private useCaseHandler(setting: Setting): void {

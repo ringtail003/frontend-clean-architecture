@@ -20,3 +20,14 @@
     (onTemplateSelected)="handleTemplateListSelected($event)"
   ></app-template-list>
 </div>
+
+<footer>
+  <button
+    [disabled]="!!vm.errors.items.length"
+    (click)="handleSaveButtonClicked()"
+  >Save Setting</button>
+
+  <app-validation-errors
+    [vm]="vm.errors"
+  ></app-validation-errors>
+</footer>

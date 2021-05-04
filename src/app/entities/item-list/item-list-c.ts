@@ -1,5 +1,6 @@
 import { Item } from 'src/app/entities/item';
 import { ItemList } from 'src/app/entities/item-list/item-list';
+import { ValidationErrorList } from 'src/app/entities/validation-error-list';
 
 export class ItemListC implements ItemList {
   #items: Item[] = [];
@@ -12,5 +13,9 @@ export class ItemListC implements ItemList {
   setItems(items: Item[]): void {
     this.#items = items;
     this.#items.forEach((v) => v.select());
+  }
+
+  getErrors(): ValidationErrorList {
+    return new ValidationErrorList();
   }
 }

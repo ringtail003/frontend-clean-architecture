@@ -14,6 +14,7 @@ import { SettingComponent } from './components/container/setting.component';
 import { TypeListComponent } from './components/type-list/type-list.component';
 import { DisabledComponent } from './components/disabled/disabled.component';
 import { SpinnerComponent } from './spinner/spinner.component';
+import { ValidationErrorsComponent } from './components/validation-errors/validation-errors.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { SpinnerComponent } from './spinner/spinner.component';
     TypeListComponent,
     DisabledComponent,
     SpinnerComponent,
+    ValidationErrorsComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, CommonModule],
   providers: [],

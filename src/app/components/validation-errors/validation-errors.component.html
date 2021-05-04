@@ -1,0 +1,15 @@
+<h1>Validation Error</h1>
+
+<ul>
+  <li 
+    *ngFor="let item of vm.items"
+  >
+    <span class="where">{{item.where}}</span>
+    <span class="cause">{{item.cause}}</span>
+    <span class="message">{{item.message}}</span>
+  </li>
+
+  <li *ngIf="!vm.items.length">
+    <span>There are no errors.</span>
+  </li>
+</ul>

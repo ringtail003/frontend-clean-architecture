@@ -1,8 +1,8 @@
 #container {
   display: grid;
-  grid-gap: 2rem;
+  grid-gap: 2em;
   grid-template-columns: 20% 1fr;
-  grid-template-rows: 500px 250px;
+  grid-template-rows: 450px 250px;
   grid-template-areas: 
     "lt rt"
     "lb rb"
@@ -33,5 +33,36 @@
   background: var(--white);
   border-radius: var(--radius);
   box-shadow: 4px 4px 10px var(--gray-deep);
-  padding: 1rem;
+  padding: 1em;
+}
+
+footer {
+  margin-top: 2em;
+
+  button {
+    margin-bottom: 1.5em;
+
+    border-radius: var(--radius);
+    box-shadow: 4px 4px 10px var(--gray-deep);
+    border: none;
+    padding: 0.7em 1em;
+    font-weight: 600;
+    background: var(--primary);
+    color: var(--white);
+
+    &[disabled] {
+      opacity: .5;
+      cursor:not-allowed;
+    }
+
+    &:not([disabled]) {
+      cursor: pointer;
+    }
+
+    &:not([disabled]):hover {
+      background: var(--primary-deep);
+      box-shadow: 4px 4px 10px var(--primary-deep);
+      transition: box-shadow 1s, background 0.5s;
+    }
+  }
 }
