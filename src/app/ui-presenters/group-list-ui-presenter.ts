@@ -24,11 +24,9 @@ export class GroupListUiPresenter {
     return {
       isEmpty: false,
       isLoading: false,
-      items: groupList.items!.map((v) => ({
-        id: v.id,
-        label: v.label,
-        isSelected: v.isSelected(),
-      })),
+      items: groupList.items!.map(({ id, label, isSelected }) => {
+        return { id, label, isSelected };
+      }),
     };
   }
 }

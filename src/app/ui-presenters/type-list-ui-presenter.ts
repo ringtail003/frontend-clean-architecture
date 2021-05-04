@@ -4,19 +4,28 @@ import { TypeListViewModel } from 'src/app/view-models/type-list-view-model';
 
 @Injectable({ providedIn: 'root' })
 export class TypeListUiPresenter {
-  default(): TypeListViewModel {
-    return {
-      items: [],
-    };
-  }
+  parse(typeList: TypeList | null): TypeListViewModel {
+    if (typeList === null) {
+      return {
+        isEmpty: true,
+        isLoading: false,
+        items: null,
+      };
+    }
 
-  parse(typeList: TypeList): TypeListViewModel {
+    if (!typeList.items) {
+      return {
+        isEmpty: false,
+        isLoading: true,
+        items: null,
+      };
+    }
+
     return {
-      items: typeList.items.map(({ id, label }) => {
-        return {
-          id,
-          label,
-        };
+      isEmpty: false,
+      isLoading: false,
+      items: typeList.items.map(({ id, label, isSelected }) => {
+        return { id, label, isSelected };
       }),
     };
   }

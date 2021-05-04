@@ -1,0 +1,47 @@
+aside {
+  color: var(--gray);
+}
+
+ul {
+  list-style: none;
+  padding-left: 0;
+
+  li {
+    padding: 0.7em 0.3em;
+    margin: 0.3em 0;
+    border-radius: var(--radius);
+    display: flex;
+    gap: 0 0.2em;
+  }
+
+  &[canSelect=true] {
+    li {
+      label,[type=checkbox] {
+        cursor: pointer;
+      }
+
+      label {
+        width: 100%;
+      }
+
+      &:hover {
+        background: var(--gray-light);
+        cursor: pointer;
+        transition: background 1.5s;
+      }
+
+      &[isSelected=true] {
+        background: var(--gray-light);
+      }
+    }
+  }
+
+  &[canSelect=false] {
+    opacity: .5;
+    cursor: not-allowed;
+
+    li {
+      pointer-events: none;
+    }
+  }
+}

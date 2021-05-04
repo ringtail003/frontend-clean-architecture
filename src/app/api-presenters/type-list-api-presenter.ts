@@ -9,7 +9,7 @@ import { TypeList } from 'src/app/entities/type-list';
 export class TypeListApiPresenter {
   parseGetListBody(response: GetListResponse): TypeList {
     const typeList = new TypeList();
-    typeList.items = response.map((v) => new Type(v));
+    typeList.setItems(response.map((v) => new Type(v)));
 
     return typeList;
   }

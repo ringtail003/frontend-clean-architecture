@@ -18,7 +18,7 @@ export class GroupList extends Entity<GroupList> {
     this.#items.forEach((v) => (v.handler = (v) => this.onChangeHandler(v)));
   }
 
-  onChangeHandler(group: Group): void {
+  private onChangeHandler(group: Group): void {
     this.#items!.forEach((v) => {
       if (v.id !== group.id) {
         v.deselect();

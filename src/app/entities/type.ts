@@ -25,7 +25,7 @@ export class Type {
     this.#isSelected = false;
   }
 
-  isSelected(): boolean {
+  get isSelected() {
     return this.#isSelected;
   }
 }

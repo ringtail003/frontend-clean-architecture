@@ -2,26 +2,26 @@ import { Item } from 'src/app/entities/item';
 import { ItemList } from 'src/app/entities/item-list/item-list';
 
 export class ItemListA implements ItemList {
-  public readonly items: Item[] = [];
-  #selectedIds: number[] = [];
+  static maximumItems = 3;
+  public readonly description = `You can select items up to ${ItemListA.maximumItems}.`;
+  public readonly canSelect = true;
+  #items: Item[] = [];
 
-  constructor(params: { items: Item[] }) {
-    this.items = params.items;
+  constructor() {}
+
+  get items(): Item[] {
+    return this.#items;
+  }
+  setItems(items: Item[]): void {
+    this.#items = items;
+    items.forEach((v) => (v.handler = (item) => this.onChangeHandler(item)));
   }
 
-  select(id: number): void {
-    if (this.#selectedIds.length >= 3) {
-      return;
+  private onChangeHandler(item: Item): void {
+    const selection = this.#items.filter((v) => v.isSelected);
+
+    if (selection.length > ItemListA.maximumItems) {
+      item.deselect();
     }
-
-    this.#selectedIds.push(id);
-  }
-
-  deselect(id: number): void {
-    this.#selectedIds = this.#selectedIds.filter((v) => v !== id);
-  }
-
-  toggle(id: number): void {
-    this.#selectedIds.includes(id) ? this.deselect(id) : this.select(id);
   }
 }

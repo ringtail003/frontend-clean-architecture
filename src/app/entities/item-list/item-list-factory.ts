@@ -17,18 +17,24 @@ export class ItemListFactory {
   }
 
   createByTypeId(typeId: TypeId, items: Item[]): ItemList {
-    switch (typeId) {
-      case 'typeA':
-        return new ItemListA({ items });
+    const itemList = (() => {
+      switch (typeId) {
+        case 'typeA':
+          return new ItemListA();
 
-      case 'typeB':
-        return new ItemListB({ items });
+        case 'typeB':
+          return new ItemListB();
 
-      case 'typeC':
-        return new ItemListC({ items });
+        case 'typeC':
+          return new ItemListC();
 
-      default:
-        throw new ExhaustImplementationError(typeId);
-    }
+        default:
+          throw new ExhaustImplementationError(typeId);
+      }
+    })();
+
+    itemList.setItems(items);
+
+    return itemList;
   }
 }

@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Setting } from 'src/app/entities/setting';
+import { TypeId } from 'src/app/entities/type';
 import { SettingUiPresenter } from 'src/app/ui-presenters/setting-ui-presenter';
 import { CreateSettingUseCase } from 'src/app/use-cases/create-setting-use-case';
 import { SelectGroupListUseCase } from 'src/app/use-cases/select-group-list-use-case';
-import { GroupViewModel } from 'src/app/view-models/group-view-model';
+import { SelectItemListUseCase } from 'src/app/use-cases/select-item-list-use-case';
+import { SelectTypeListUseCase } from 'src/app/use-cases/select-type-list-use-case';
 import { SettingViewModel } from 'src/app/view-models/setting-view-model';
 
 @Component({
@@ -18,24 +20,35 @@ export class SettingComponent implements OnInit {
   constructor(
     private presenter: SettingUiPresenter,
     private createSetting: CreateSettingUseCase,
-    private selectGroupList: SelectGroupListUseCase
+    private selectGroupList: SelectGroupListUseCase,
+    private selectTypeList: SelectTypeListUseCase,
+    private selectItemList: SelectItemListUseCase
   ) {}
 
   ngOnInit(): void {
-    const handler = (setting: Setting) => {
-      this.entity = setting;
-      this.vm = this.presenter.parse(setting);
-    };
-
-    this.createSetting.exec(handler);
+    this.createSetting.exec((v) => this.useCaseHandler(v));
   }
 
-  handleGroupSelected(group: GroupViewModel) {
-    const handler = (setting: Setting) => {
-      this.entity = setting;
-      this.vm = this.presenter.parse(setting);
-    };
+  handleGroupSelected(groupId: number) {
+    this.selectGroupList.exec(this.entity, groupId, (v) =>
+      this.useCaseHandler(v)
+    );
+  }
 
-    this.selectGroupList.exec(this.entity, group.id, (v) => handler(v));
+  handleTypeSelected(typeId: TypeId) {
+    this.selectTypeList.exec(this.entity, typeId, (v) =>
+      this.useCaseHandler(v)
+    );
+  }
+
+  handleItemSelected(itemId: number) {
+    this.selectItemList.exec(this.entity, itemId, (v) =>
+      this.useCaseHandler(v)
+    );
+  }
+
+  private useCaseHandler(setting: Setting): void {
+    this.entity = setting;
+    this.vm = this.presenter.parse(setting);
   }
 }

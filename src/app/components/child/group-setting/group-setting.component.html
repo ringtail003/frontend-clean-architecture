@@ -1,12 +1,13 @@
-<app-disabled *ngIf="vm.isEmpty">Please select group.</app-disabled>
-<app-loading *ngIf="vm.isLoading"></app-loading>
+<h1>Group Setting</h1>
 
-<ng-template
- [ngIf]="!vm.isLoading && !vm.isEmpty"
->
-  <h1>Group Setting</h1>
-  
+<div>
   <app-type-list
     [vm]="vm.typeList!"
+    (onTypeSelected)="onTypeSelected.emit($event)"
   ></app-type-list>
-</ng-template>
+
+  <app-item-list
+    [vm]="vm.itemList!"
+    (onItemSelected)="onItemSelected.emit($event)"
+  ></app-item-list>
+</div>

@@ -12,31 +12,9 @@ export class GroupSettingUiPresenter {
   ) {}
 
   parse(groupSetting: GroupSetting | null): GroupSettingViewModel {
-    if (groupSetting === null) {
-      return {
-        isEmpty: true,
-        isLoading: false,
-        typeList: null,
-        itemList: null,
-      };
-    }
-
-    if (!groupSetting.typeList) {
-      return {
-        isEmpty: false,
-        isLoading: true,
-        typeList: null,
-        itemList: null,
-      };
-    }
-
     return {
-      isEmpty: false,
-      isLoading: false,
-      typeList: this.typeList.parse(groupSetting.typeList!),
-      itemList: groupSetting.itemList
-        ? this.itemList.parse(groupSetting.itemList)
-        : null,
+      typeList: this.typeList.parse(groupSetting?.typeList || null),
+      itemList: this.itemList.parse(groupSetting?.itemList || null),
     };
   }
 }

@@ -1,6 +1,9 @@
 import { ItemViewModel } from 'src/app/view-models/item-view-model';
 
 export interface ItemListViewModel {
-  isLoading?: boolean;
-  items: ItemViewModel[];
+  isEmpty: boolean;
+  isLoading: boolean;
+  description: string | null;
+  canSelect: boolean;
+  items: ItemViewModel[] | null;
 }

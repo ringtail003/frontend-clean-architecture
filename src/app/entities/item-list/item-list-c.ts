@@ -2,17 +2,15 @@ import { Item } from 'src/app/entities/item';
 import { ItemList } from 'src/app/entities/item-list/item-list';
 
 export class ItemListC implements ItemList {
-  public readonly items: Item[] = [];
-  #selectedIds: number[] = [];
+  #items: Item[] = [];
+  public readonly description = 'You can not be change item selection.';
+  public readonly canSelect = false;
 
-  constructor(params: { items: Item[] }) {
-    this.items = params.items;
-    this.#selectedIds = this.items.map((v) => v.id);
+  get items(): Item[] {
+    return this.#items;
   }
-
-  select(id: number): void {}
-
-  deselect(id: number): void {}
-
-  toggle(id: number): void {}
+  setItems(items: Item[]): void {
+    this.#items = items;
+    this.#items.forEach((v) => v.select());
+  }
 }

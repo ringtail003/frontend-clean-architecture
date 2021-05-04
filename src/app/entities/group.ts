@@ -20,7 +20,7 @@ export class Group extends Entity<Group> {
     this.#isSelected = false;
   }
 
-  isSelected(): boolean {
+  get isSelected() {
     return this.#isSelected;
   }
 }

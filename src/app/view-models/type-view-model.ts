@@ -1,5 +1,5 @@
 export interface TypeViewModel {
-  isSelected?: boolean;
+  isSelected: boolean;
   id: string;
   label: string;
 }

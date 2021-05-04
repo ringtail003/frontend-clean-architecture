@@ -2,11 +2,11 @@ import { Item } from 'src/app/entities/item';
 import { ItemList } from 'src/app/entities/item-list/item-list';
 
 export class ItemListNoop implements ItemList {
-  public readonly items: Item[] = [];
+  public readonly description = '';
+  public readonly canSelect = false;
 
-  select(id: number): void {}
-
-  deselect(id: number): void {}
-
-  toggle(id: number): void {}
+  get items(): null {
+    return null;
+  }
+  setItems(items: Item[]) {}
 }

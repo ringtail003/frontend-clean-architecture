@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { GroupSetting } from 'src/app/entities/group-setting';
 import { ItemListFactory } from 'src/app/entities/item-list/item-list-factory';
 import { Setting } from 'src/app/entities/setting';
+import { TypeList } from 'src/app/entities/type-list';
 import { TypeRepository } from 'src/app/repositories/type-repository';
 
 @Injectable({
@@ -27,6 +28,7 @@ export class SelectGroupListUseCase {
     const groupSetting = new GroupSetting();
     setting.setGroupSetting(groupSetting);
     setting.groupList!.attach();
+    groupSetting.setTypeList(new TypeList());
 
     handler(setting);
 

@@ -1,1 +1,30 @@
-<p>item-list works!</p>
+<h2>Item</h2>
+
+<app-disabled *ngIf="vm.isEmpty">Waiting for selecting the type.</app-disabled>
+<app-loading *ngIf="vm.isLoading"></app-loading>
+
+<ng-template
+  [ngIf]="!vm.isLoading && !vm.isEmpty"
+>
+  <aside>{{vm.description}}</aside>
+
+  <ul
+    [attr.canSelect]="vm.canSelect"
+  >
+    <li 
+      *ngFor="let item of vm.items; index as index"
+      [ngForTrackByField]="'id'"
+      [attr.isSelected]="item.isSelected"
+    >
+      <input 
+        type="checkbox"
+        id="item-{{index}}"
+        [checked]="item.isSelected"
+        (click)="onItemSelected.emit(item.id)"
+      >
+      <label 
+        for="item-{{index}}"
+      >{{item.label}}</label>
+    </li>
+  </ul>
+</ng-template>
