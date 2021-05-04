@@ -1,1 +1,25 @@
-<p>category-list works!</p>
+<h1>Category</h1>
+
+<app-loading *ngIf="vm.isLoading"></app-loading>
+
+<ng-template
+ [ngIf]="!vm.isLoading"
+>
+  <ul>
+    <li 
+      *ngFor="let item of vm.items; index as index"
+      [ngForTrackByField]="'id'"
+      [attr.isSelected]="item.isSelected"
+      (click)="onCategorySelected.emit(item.id)"
+    >
+      <input 
+        type="radio"
+        id="category-${index}"
+        [checked]="item.isSelected"
+      >
+      <label
+        for="category-${index}"
+      >{{item.label}}</label>
+    </li>
+  </ul>
+</ng-template>

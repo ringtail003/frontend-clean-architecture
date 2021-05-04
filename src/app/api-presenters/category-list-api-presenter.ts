@@ -8,8 +8,9 @@ import { CategoryList } from 'src/app/entities/category-list';
 })
 export class CategoryListPresenter {
   parseGetListBody(response: CategoryListResponse): CategoryList {
-    return new CategoryList({
-      items: response.map((v) => new Category(v)),
-    });
+    const categoryList = new CategoryList();
+    categoryList.setItems(response.map((v) => new Category(v)));
+
+    return categoryList;
   }
 }

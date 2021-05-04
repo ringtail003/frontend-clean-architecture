@@ -1,18 +1,27 @@
 import { Category } from 'src/app/entities/category';
+import { Entity } from 'src/app/entities/entity';
 
-export class CategoryList {
-  public readonly items: Category[];
-  #selectedId: number | null = null;
+export class CategoryList extends Entity<CategoryList> {
+  #items: Category[] | null;
 
-  constructor(params: { items: Category[] }) {
-    this.items = params.items;
+  constructor() {
+    super();
+    this.#items = null;
   }
 
-  select(id: number): void {
-    this.#selectedId = id;
+  get items() {
+    return this.#items;
+  }
+  setItems(items: Category[]): void {
+    this.#items = items;
+    this.#items.forEach((v) => (v.handler = (v) => this.onChangeHandler(v)));
   }
 
-  isValid(): boolean {
-    return !this.#selectedId;
+  private onChangeHandler(category: Category): void {
+    this.#items!.forEach((v) => {
+      if (v.id !== category.id) {
+        v.deselect();
+      }
+    });
   }
 }

@@ -1,0 +1,26 @@
+ul {
+  list-style: none;
+  display: flex;
+  gap: 1em;
+  padding-left: 0;
+
+  li {
+    padding: 0.7em;
+    margin: 0.3em 0;
+    border-radius: var(--radius);
+
+    [type="checkbox"],label {
+      cursor: pointer;
+    }
+
+    &:hover {
+      background: var(--gray-light);
+      cursor: pointer;
+      transition: background 1.5s;
+    }
+  
+    &[isSelected=true] {
+      background: var(--gray-light);
+    }
+  }
+}

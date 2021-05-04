@@ -10,7 +10,7 @@ import { TemplateList } from 'src/app/entities/template-list';
 export class TemplateRepository {
   constructor(private presenter: TemplateListApiPresenter) {}
 
-  getList(categoryId: number): Rx.Observable<TemplateList> {
+  getListByCategory(categoryId: number): Rx.Observable<TemplateList> {
     const responses = [
       {
         categoryId: 1,
@@ -32,6 +32,6 @@ export class TemplateRepository {
       this.presenter.parseGetListBody(
         responses.find((v) => v.categoryId === categoryId)?.response || []
       )
-    ).pipe(delay(3000));
+    ).pipe(delay(800));
   }
 }

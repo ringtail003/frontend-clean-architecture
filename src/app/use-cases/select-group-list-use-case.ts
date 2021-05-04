@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { GroupSetting } from 'src/app/entities/group-setting';
-import { ItemListFactory } from 'src/app/entities/item-list/item-list-factory';
 import { Setting } from 'src/app/entities/setting';
 import { TypeList } from 'src/app/entities/type-list';
 import { TypeRepository } from 'src/app/repositories/type-repository';
@@ -9,10 +8,7 @@ import { TypeRepository } from 'src/app/repositories/type-repository';
   providedIn: 'root',
 })
 export class SelectGroupListUseCase {
-  constructor(
-    private typeRepository: TypeRepository,
-    private itemListFactory: ItemListFactory
-  ) {}
+  constructor(private typeRepository: TypeRepository) {}
 
   exec(
     setting: Setting,

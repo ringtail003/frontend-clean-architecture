@@ -1,26 +1,27 @@
+import { Entity } from 'src/app/entities/entity';
 import { Template } from 'src/app/entities/template';
 
-export class TemplateList {
-  public readonly items: Template[];
-  #selectedIds: number[] = [];
+export class TemplateList extends Entity<TemplateList> {
+  #items: Template[] | null;
 
-  constructor(params: { items: Template[] }) {
-    this.items = params.items;
+  constructor() {
+    super();
+    this.#items = null;
   }
 
-  select(id: number): void {
-    this.#selectedIds.push(id);
+  get items() {
+    return this.#items;
+  }
+  setItems(items: Template[]): void {
+    this.#items = items;
+    this.#items.forEach((v) => (v.handler = (v) => this.onChangeHandler(v)));
   }
 
-  deselect(id: number): void {
-    this.#selectedIds = this.#selectedIds.filter((v) => v !== id);
-  }
-
-  toggle(id: number): void {
-    this.#selectedIds.includes(id) ? this.deselect(id) : this.select(id);
-  }
-
-  isValid(): boolean {
-    return !this.#selectedIds.length;
+  private onChangeHandler(template: Template): void {
+    this.#items!.forEach((v) => {
+      if (v.id !== template.id) {
+        v.deselect();
+      }
+    });
   }
 }

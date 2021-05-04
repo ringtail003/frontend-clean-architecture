@@ -4,7 +4,10 @@
     (onGroupSelected)="handleGroupSelected($event)"
   ></app-group-list>
 
-  <app-category-list></app-category-list>
+  <app-category-list
+    [vm]="vm.categoryList"
+    (onCategorySelected)="handleCategoryListSelected($event)"
+  ></app-category-list>
 
   <app-group-setting
     [vm]="vm.groupSetting"
@@ -12,5 +15,8 @@
     (onItemSelected)="handleItemSelected($event)"
   ></app-group-setting>
   
-  <app-template-list></app-template-list>
+  <app-template-list
+    [vm]="vm.templateList"
+    (onTemplateSelected)="handleTemplateListSelected($event)"
+  ></app-template-list>
 </div>

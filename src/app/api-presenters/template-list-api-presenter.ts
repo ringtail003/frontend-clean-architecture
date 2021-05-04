@@ -8,6 +8,9 @@ import { TemplateList } from 'src/app/entities/template-list';
 })
 export class TemplateListApiPresenter {
   parseGetListBody(response: GetListResponse): TemplateList {
-    return new TemplateList({ items: response.map((v) => new Template(v)) });
+    const templateList = new TemplateList();
+    templateList.setItems(response.map((v) => new Template(v)));
+
+    return templateList;
   }
 }

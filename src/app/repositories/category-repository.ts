@@ -16,6 +16,6 @@ export class CategoryRepository {
         { id: 1, label: 'category1' },
         { id: 2, label: 'category2' },
       ])
-    ).pipe(delay(2500));
+    ).pipe(delay(4500));
   }
 }

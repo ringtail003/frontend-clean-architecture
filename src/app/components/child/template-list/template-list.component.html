@@ -1,1 +1,26 @@
-<p>template-list works!</p>
+<h2>Template</h2>
+
+<app-disabled *ngIf="vm.isEmpty">Waiting for selecting the category.</app-disabled>
+<app-loading *ngIf="vm.isLoading"></app-loading>
+
+<ng-template
+  [ngIf]="!vm.isLoading && !vm.isEmpty"
+>
+  <ul>
+    <li 
+      *ngFor="let item of vm.items; index as index"
+      [ngForTrackByField]="'id'"
+      [attr.isSelected]="item.isSelected"
+    >
+      <input 
+        type="checkbox"
+        id="template-{{index}}"
+        [checked]="item.isSelected"
+        (click)="onTemplateSelected.emit(item.id)"
+      >
+      <label 
+        for="template-{{index}}"
+      >{{item.label}}</label>
+    </li>
+  </ul>
+</ng-template>
