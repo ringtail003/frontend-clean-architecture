@@ -1,8 +1,9 @@
 #container {
   display: grid;
   grid-gap: 2em;
+  height: 70vh;
   grid-template-columns: 20% 1fr;
-  grid-template-rows: 450px 250px;
+  grid-template-rows: 70% 1fr;
   grid-template-areas: 
     "lt rt"
     "lb rb"
