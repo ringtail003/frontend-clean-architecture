@@ -37,7 +37,7 @@ export class TypeList extends Entity<TypeList> {
     }
 
     if (this.#items === null) {
-      list.add(`requesting`, `Now requesting.`);
+      list.add(`resolve`, `Waiting for resolution.`);
     }
 
     return list;

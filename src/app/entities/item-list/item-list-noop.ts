@@ -15,7 +15,7 @@ export class ItemListNoop implements ItemList {
   getErrors(): ValidationErrorList {
     const list = new ValidationErrorList(this.#validationWhere);
 
-    list.add(`emptySelection`, `Now requesting.`);
+    list.add(`resolve`, `Waiting for resolution.`);
 
     return list;
   }

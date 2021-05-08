@@ -29,7 +29,7 @@ export class CategoryList extends Entity<CategoryList> {
     }
 
     if (this.#items === null) {
-      list.add(`requesting`, `Now requesting.`);
+      list.add(`resolve`, `Waiting for resolution.`);
     }
 
     return list;

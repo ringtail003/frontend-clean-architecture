@@ -29,7 +29,7 @@ export class TemplateList extends Entity<TemplateList> {
     }
 
     if (this.#items === null) {
-      list.add(`requesting`, `Now requesting.`);
+      list.add(`resolve`, `Waiting for resolution.`);
     }
 
     return list;
