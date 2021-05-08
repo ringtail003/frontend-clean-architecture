@@ -5,6 +5,7 @@ import { ValidationErrorList } from 'src/app/entities/validation-error-list';
 
 export class ItemListC extends Entity<ItemListC> implements ItemList {
   #items: Item[] = [];
+  #validationWhere = 'Item';
   public readonly description = 'You can not be change item selection.';
   public readonly canSelect = false;
 
@@ -17,6 +18,10 @@ export class ItemListC extends Entity<ItemListC> implements ItemList {
   }
 
   getErrors(): ValidationErrorList {
-    return new ValidationErrorList();
+    const list = new ValidationErrorList(this.#validationWhere);
+
+    this.#items.forEach((v) => list.concat(v.getErrors()));
+
+    return list;
   }
 }

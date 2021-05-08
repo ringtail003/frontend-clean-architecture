@@ -36,6 +36,8 @@ export class ItemListA extends Entity<ItemListA> implements ItemList {
       list.add(`emptySelection`, `Must be selected one or higher.`);
     }
 
+    this.#items.forEach((v) => list.concat(v.getErrors()));
+
     return list;
   }
 

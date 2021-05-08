@@ -1,3 +1,5 @@
+import { ValidationErrorList } from 'src/app/entities/validation-error-list';
+
 export interface Category {
   id: number;
   label: string;
@@ -6,4 +8,5 @@ export interface Category {
   handler: (item: Category) => void;
   select: () => void;
   deselect: () => void;
+  getErrors(): ValidationErrorList;
 }

@@ -40,6 +40,8 @@ export class TypeList extends Entity<TypeList> {
       list.add(`resolve`, `Waiting for resolution.`);
     }
 
+    (this.#items || []).forEach((v) => list.concat(v.getErrors()));
+
     return list;
   }
 }

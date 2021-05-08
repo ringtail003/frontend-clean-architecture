@@ -32,6 +32,8 @@ export class TemplateList extends Entity<TemplateList> {
       list.add(`resolve`, `Waiting for resolution.`);
     }
 
+    (this.#items || []).forEach((v) => list.concat(v.getErrors()));
+
     return list;
   }
 

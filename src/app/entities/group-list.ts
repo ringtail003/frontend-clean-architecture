@@ -40,6 +40,8 @@ export class GroupList extends Entity<GroupList> {
       list.add(`resolve`, `Waiting for resolution.`);
     }
 
+    (this.#items || []).forEach((v) => list.concat(v.getErrors()));
+
     return list;
   }
 }
