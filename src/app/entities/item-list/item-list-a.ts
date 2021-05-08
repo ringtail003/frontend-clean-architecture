@@ -1,8 +1,9 @@
+import { Entity } from 'src/app/entities/entity';
 import { Item } from 'src/app/entities/item';
 import { ItemList } from 'src/app/entities/item-list/item-list';
 import { ValidationErrorList } from 'src/app/entities/validation-error-list';
 
-export class ItemListA implements ItemList {
+export class ItemListA extends Entity<ItemListA> implements ItemList {
   #maximumItems = 3;
   public readonly description = `You can select items up to ${
     this.#maximumItems
@@ -10,8 +11,6 @@ export class ItemListA implements ItemList {
   public readonly canSelect = true;
   #items: Item[] = [];
   #validationWhere = 'Item';
-
-  constructor() {}
 
   get items(): Item[] {
     return this.#items;

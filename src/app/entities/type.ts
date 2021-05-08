@@ -1,12 +1,16 @@
+import { Entity } from 'src/app/entities/entity';
+import { ValidationErrorList } from 'src/app/entities/validation-error-list';
+
 export type TypeId = 'typeA' | 'typeB' | 'typeC';
 
-export class Type {
+export class Type extends Entity<Type> {
   public readonly id: TypeId;
   public readonly label: string;
   #isSelected: boolean = false;
   #handler: (type: this) => void;
 
   constructor(params: { id: TypeId; label: string }) {
+    super();
     this.id = params.id;
     this.label = params.label;
     this.#handler = () => {};
@@ -23,6 +27,10 @@ export class Type {
 
   deselect(): void {
     this.#isSelected = false;
+  }
+
+  getErrors() {
+    return new ValidationErrorList();
   }
 
   get isSelected() {

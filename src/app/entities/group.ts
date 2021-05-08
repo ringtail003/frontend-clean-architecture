@@ -1,4 +1,5 @@
 import { Entity } from 'src/app/entities/entity';
+import { ValidationErrorList } from 'src/app/entities/validation-error-list';
 
 export class Group extends Entity<Group> {
   public readonly id: number;
@@ -18,6 +19,10 @@ export class Group extends Entity<Group> {
 
   deselect(): void {
     this.#isSelected = false;
+  }
+
+  getErrors() {
+    return new ValidationErrorList();
   }
 
   get isSelected() {

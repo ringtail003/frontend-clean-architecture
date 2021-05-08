@@ -1,10 +1,11 @@
 import { CategoryList } from 'src/app/entities/category-list';
+import { Entity } from 'src/app/entities/entity';
 import { GroupList } from 'src/app/entities/group-list';
 import { GroupSetting } from 'src/app/entities/group-setting';
 import { TemplateList } from 'src/app/entities/template-list';
 import { ValidationErrorList } from 'src/app/entities/validation-error-list';
 
-export class Setting {
+export class Setting extends Entity<Setting> {
   #validationKey = 'Setting' as const;
 
   #groupList: GroupList | null;
@@ -13,6 +14,7 @@ export class Setting {
   #templateList: TemplateList | null;
 
   constructor() {
+    super();
     this.#groupList = null;
     this.#groupSetting = null;
     this.#categoryList = null;
