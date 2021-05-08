@@ -2,6 +2,8 @@
 
 💀 フロントエンドでClean Architectureを実践できないかと格闘したコード。
 
+![sample](https://user-images.githubusercontent.com/15980747/117543743-0e188d00-b059-11eb-83dc-04f2fa08b597.gif)
+
 ## Installation 
 
 ```bash 
